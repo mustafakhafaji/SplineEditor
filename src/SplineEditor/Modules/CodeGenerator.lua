@@ -1,24 +1,18 @@
-local LinesManager = {}
+local CodeGenerator = {}
 
 local Modules = script.Parent
 local Node = require(Modules.Node) 
 
-type line = {[number]: GuiBase}
-
-local _lines: {[number]: line} = {}
-
-local MAX_T = 100
-
 --[[
 
-TODO
-- Create function determining any n degree bezier curves mathematically
+Given anchor points
+Given control points
+
+Generate code
 
 ]]
 
-
--- PRIVATE
-
+local functions = [[
 function connectPoints(points: {a: Node.Node, b: Node.Node})
     
     for t = 1, MAX_T do
@@ -53,24 +47,17 @@ function connectQuadraticCurve(anchorNodes: {a: Node.Node, b: Node.Node}, contro
         position.y = (1 - t) ^ 3 * anchorNodes.a.y + 3 * (1 - t) ^ 2 * t * controlNodes[1].y + 3 * (1 - t) * t ^ 2 * controlNodes[2].y + t ^ 3 * anchorNodes.b.y
     end
 end
+]]
 
+function CodeGenerator.generate(anchorNodes: {[number]: Node.Node}, controlNodes: {[number]: Node.Node}): ()
 
--- PUBLIC
+    local code = functions
 
-function LinesManager.connectNodes(anchorNodes: {a: Node.Node, b: Node.Node}, controlNodes: {[number]: Node.Node}): ()
+    for i, anchorNode in ipairs(anchorNodes) do
+        
 
-    if #controlNodes == 0 then
-        connectPoints(anchorNodes)
-
-    elseif #controlNodes == 1 then
-        connectCubicCurve(anchorNodes, controlNodes)
-
-    elseif #controlNodes == 2 then
-        connectQuadraticCurve(anchorNodes, controlNodes)
-
-    else
-        warn(`Too many control nodes in bezier curve, # of control nodes: {#controlNodes}`)
+        code += ""
     end
 end
 
-return LinesManager
+return CodeGenerator
