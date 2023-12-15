@@ -1,35 +1,18 @@
 local Modules = script.Parent.Modules
-local test = require(Modules.Test)
+local Gui = script.Parent.Gui
+
+require(Modules.KeyboardHandler)
 
 local Toolbar = plugin:CreateToolbar('SplineEditor')
 local PluginButton = Toolbar:CreateButton('SplineEditor', 'Create & export spline piecewise functions', '')
 
+local ScreenGui = Gui.ScreenGui
+
 local isActive = false
 
 function handlePluginButtonClick()
-    if isActive then
-
-        test.deactivate()
-        isActive = false
-    else
-        
-        test.activate()
-        isActive = true
-    end
+    isActive = not isActive
+    ScreenGui.Enabled = isActive
 end
---[[
-
-structure
-
-module for visuals
-module for logic
-
-
-left side, list of splines
-
-
-
-]]
-
 
 PluginButton.Click:Connect(handlePluginButtonClick)

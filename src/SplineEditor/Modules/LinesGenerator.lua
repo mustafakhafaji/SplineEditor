@@ -1,0 +1,3 @@
+local LinesGenerator = {}
+
+return LinesGenerator
