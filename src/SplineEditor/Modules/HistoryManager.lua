@@ -1,8 +1,14 @@
 local HistoryManager = {}
 
 local Modules = script.Parent
-local History = Modules.History
+local History = require(Modules.History) 
+local NodesManager = require(Modules.NodesManager)
 
+local reverseActions = {
+    addNode = NodesManager.deleteNode,
+    deleteNode = NodesManager.addNode,
+    moveNode = NodesManager.moveNode,
+}
 
 --[[
 
@@ -17,7 +23,7 @@ Recordable actions:
 
 -- PUBLIC
 
-function executeAction(action: {}): ()
+function executeAction(action: History.Action): ()
 
     
 
@@ -31,15 +37,15 @@ function HistoryManager.undo()
 
     -- Find reverse action
 
-    local reverseAction = {}
+    --local reverseAction: History.Action = {}
 
-    executeAction(reverseAction)
+    --executeAction(reverseAction)
 end
 
 
 function HistoryManager.redo()
 
-    executeAction(History.popRedo())
+    --executeAction(History.popRedo())
 end
 
 

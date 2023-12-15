@@ -5,9 +5,15 @@ local _redoStack = {}
 
 local MAX_RECORDED_ACTIONS = 50
 
+export type Action = {
+    action: "addNode" | "deleteNode" | "moveNode", 
+    x: number?, 
+    y: number?
+}
+
 -- PUBLIC
 
-function History.recordAction(action: {}): ()
+function History.recordAction(action: Action): ()
 
     if #_undoStack > MAX_RECORDED_ACTIONS then
         table.remove(_undoStack, 1)
