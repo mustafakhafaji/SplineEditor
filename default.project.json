@@ -1,0 +1,11 @@
+{
+  "name": "SplineEditor",
+  "tree": {
+    "$className": "DataModel",
+
+    "ServerScriptService": {
+      "$path": "src/server",
+      "$ignoreUnknownInstances": true
+    }
+  }
+}
