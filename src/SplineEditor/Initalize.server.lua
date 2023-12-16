@@ -5,8 +5,8 @@ local PluginFrame = ScreenGui.PluginFrame
 local TopbarFrame = PluginFrame.TopbarFrame
 local CloseTextButton = TopbarFrame.CloseTextButton
 
+local NodesManager = require(Modules.NodesManager)
 require(Modules.KeyboardHandler)
-require(Modules.NodesManager)
 
 local Toolbar = plugin:CreateToolbar('SplineEditor')
 local PluginButton = Toolbar:CreateButton('SplineEditor', 'Create & export spline piecewise functions', '')
@@ -15,7 +15,14 @@ local ScreenGui = Gui.ScreenGui
 
 local isActive = false
 
-function handlePluginButtonClick()
+function handlePluginButtonClick(): ()
+
+    if not isActive then
+        NodesManager.enable()
+    else
+        NodesManager.disable()
+    end
+
     isActive = not isActive
     ScreenGui.Enabled = isActive
 end

@@ -69,7 +69,7 @@ function Node.select(node: Node): ()
     local selectedCenterLineFrameClone = SelectedCenterLineFrame:Clone()
     selectedCenterLineFrameClone.Parent = node.nodeGui
 
-    local selectedNodeUIStrokeClone = SelectedCenterLineFrame:Clone()
+    local selectedNodeUIStrokeClone = SelectedNodeUIStroke:Clone()
     selectedNodeUIStrokeClone.Parent = node.nodeGui
 end
 
